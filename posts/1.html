@@ -49,7 +49,7 @@
                         <section class="mb-5">
                             <p class="fs-5 mb-4">Makine Öğrenmesinde veri temizliği önemlidir. Algoritmaların çoğu eksik veriye karşı hassastır, eksik veriyle çalışmak yanlı ve yanlış sonuçlar elde etmemize sebep olur.
 pandas kütüphanesindeki isna() fonksiyonu verisetimizdeki NaN değerleri bulmamızı sağlar. Fonksiyon, boş olan değerlere True(1), diğerlerine False(0) atar. Böylece sum() fonksiyonunu ile birlikte kullanarak sütun bazında kaç tane boş değer olduğunu görebiliriz. Ard arda iki sum() fonksiyonunu kullanarak verisetindeki toplam boş değer sayısını öğrenebiliriz. </p>
-                            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>df.groupby(['Name','City'])['Age'].apply(sum).reset_index()
+                            <div class="language-plaintext highlighter-rouge"><div class="container"><pre class="highlight"><code>df.groupby(['Name','City'])['Age'].apply(sum).reset_index()
 or
 df.groupby(['Name','City'])['Age'].sum().reset_index()
 </code></pre></div></div>
