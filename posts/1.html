@@ -44,29 +44,70 @@
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                        <figure class="mb-4"><img class="img-fluid rounded" src="images/1.jpg" alt="..." /></figure>
                         <!-- Post content-->
                         <section class="mb-5">
                             <p class="fs-5 mb-4">Makine Öğrenmesinde veri temizliği önemlidir. Algoritmaların çoğu eksik veriye karşı hassastır, eksik veriyle çalışmak yanlı ve yanlış sonuçlar elde etmemize sebep olur.
 pandas kütüphanesindeki isna() fonksiyonu verisetimizdeki NaN değerleri bulmamızı sağlar. Fonksiyon, boş olan değerlere True(1), diğerlerine False(0) atar. Böylece sum() fonksiyonunu ile birlikte kullanarak sütun bazında kaç tane boş değer olduğunu görebiliriz. Ard arda iki sum() fonksiyonunu kullanarak verisetindeki toplam boş değer sayısını öğrenebiliriz. </p>
-                            <div class="container"><pre><code>df.groupby(['Name','City'])['Age'].apply(sum).reset_index()
-or
-df.groupby(['Name','City'])['Age'].sum().reset_index()
-</code></pre></div>
-                            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import pandas as pd
-import numpy as np
-df = pd.DataFrame( {
-"Name" : ["Alice", "Bob", "Mallory", "Mallory", "Bob" , "Mallory"] ,
-"City" : ["Seattle", "Seattle", "Portland", "Seattle", "Seattle",
-"Portland"] ,
-"Age" : [30, 20, 25, 45, 20 , 15]} )
-df
-</code></pre></div></div>
-                            <p class="fs-5 mb-4">The universe is large and old, and the ingredients for life as we know it are everywhere, so there's no reason to think that Earth would be unique in that regard. Whether of not the life became intelligent is a different question, and we'll see if we find that.</p>
-                            <p class="fs-5 mb-4">If you get asteroids about a kilometer in size, those are large enough and carry enough energy into our system to disrupt transportation, communication, the food chains, and that can be a really bad day on Earth.</p>
-                            <h2 class="fw-bolder mb-4 mt-5">I have odd cosmic thoughts every day</h2>
-                            <p class="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day and I realized I could hold them to myself or share them with people who might be interested.</p>
-                            <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p>
+                            <div class="container"><pre class="highlight">
+                                <code>
+import pandas as pd
+data_path = "..\NBA_Dataset.csv"
+df = pd.read_csv(data_path)
+ncounts=pd.DataFrame([df.isna().sum()]).T
+ncounts=ncounts.rename(columns={1:'data_missing'})
+ncounts
+                                </code></pre>
+                            </div>                            
+                            <p class="fs-5 mb-4">Bu kodun çıktısı bize tablo halinde sütun bazında boş değer satır sayısını verir.</p>
+                            <div class="flex-shrink-0"><img class="img-fluid rounded" src="images/2.png" alt="..." /></div>
+                            <p class="fs-5 mb-4">Ardı ardına iki sum() fonksiyonunun kullanılması verisetindeki toplam boş değer sayısını döndürür.</p>
+                            <div class="container"<code>df.isna().sum().sum()</code>
+                            <p><samp>86</samp></p></div>                           
+                            
+                            <p class="fs-5 mb-4">Verisetindeki boş değerli satırları sildiğimizi düşünürsek; 62 satır veri kaybederiz. Sütun bazında silersek 5 sütun veri kaybederiz.Dolayısıyla verileri yoketmek doğru bir yöntem değildir.</p>
+                            <div class="container"<code>df.shape, df.dropna(axis=0).shape</code>
+                                <p><samp>((159, 7), (97, 7))</samp></p></div>                          
+                            <div class="container"<code>df.shape, df.dropna(axis=1).shape</code>
+                                    <p><samp>((159, 7), (159, 2))</samp></p></div>   
+                            <h3 class="fw-bolder mb-4 mt-5">Pandas ile Veri Düzeltme</h3>  
+                            <p class="fs-5 mb-4">Pandas, boş veri üç şekilde doldurabilir. ffill bir sonraki değer ile, bfill ise bir önceki değer ile doldurur. groupby daha gelişmiş bir tekniktir. Boş olan veriyi, kendisiyle aynı gruptan olan verilere dayanarak doldurur.</p>                     
+                            <div class="container"><pre class="highlight">
+                                <code>
+#rename komutu ile uzun olan sütun isimlerini daha kısa isimlendirebiliriz.
+df = df.rename(columns={"Weightlifting_Sessions_Average":"WL"})
+#Belirli bir değerle boş değerler doldurulabilir.
+df["WL"].fillna(-1)</code></pre>
+                            </div>                            
+                            <div class="flex-shrink-0"><img class="img-fluid rounded" src="images/3.png" alt="..." /></div>
+                            <p class="fs-5 mb-4">WL sütununun ortalama veya medyan değerleri ile veya belirli bir değrle eksik değerleri doldurmamız mümkündür. Boş değerin bulunduğu satırdaki takıma ait ortalama ile eksik değeri doldurmak daha uygun bir çözümdür.</p>
+                            <div class="container"><pre class="highlight">
+                                <code>
+#Groupby team
+mean_WL=df.groupby("Team")['WL'].mean().to_dict()</code></pre>
+                            </div>                            
+                            <div class="container"<code>mean WL</code> 
+                                <p><pre class="highlight"><samp>
+{'Bulls': 11.214285714285714,
+'Clippers': 29.0,
+'Lakers': 23173.645833333332,    
+'Porcupines': 42.529411764705884,    
+'Trailblazers': 25.425925925925924,   
+'Warriors': 18.727272727272727}    
+                                </samp></pre>
+                            </div>
+                            <div class="container"><pre class="highlight">
+                                <code>
+for index, row in df.iterrows():
+team = row['Team']
+if pd.isna(row['WL']):
+    mean_value = mean_WL.get(team)
+    df.at[index, 'WL'] = mean_value</code></pre>
+                            </div>                                    
+                            <p class="fs-5 mb-4">Satır satır gezerek boş değerlere takımın ortalama değerini atayabiliriz. Yukarıdaki kodu tek satırla lambda ve transform fonksiyonları kullanarak da yazabiliriz.</p>
+                            <div class="container">
+                                <code>df_clean['WL']=df_clean.groupby('Team')['WL'].transform(lambda x:x.fillna(x.mean()))</code></pre>
+                            </div>              
                         </section>
                     </article>
                     <!-- Comments section-->
