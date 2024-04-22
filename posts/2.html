@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Blog Post - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Start Bootstrap</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h1 class="fw-bolder mb-1">Ames Veriseti ile Açıklayıcı İstatistik</h1>
+                            <!-- Post meta content-->
+                            <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
+                            <!-- Post categories-->
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Python</a>
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">İstatistik</a>
+                        </header>
+                        <!-- Preview image figure-->
+                        <figure class="mb-4"><img class="img-fluid rounded" src="images/8.jpg" alt="..." /></figure>
+                        <!-- Post content-->
+                        <section class="mb-5">
+                            <p class="fs-5 mb-4">Açıklayıcı İstatistik; büyük veriden anlamlı özet bilgiler getirmemizi sağlaması sebebiyle Veri Analizi'nin baş köşesindedir. 
+                            <p class="fs-5 mb-4">    Merkezi Eğilim : Verinin Kalbi</p>
+                            <p class="fs-5 mb-4">Merkezi Eğilim Ölçüleri</p>
+                            <p class="fs-5 mb-4">1-Aritmetik Ortalama : Değerlerin toplamının, değerlerin sayısına bölünmesiyle bulunur.</p>      
+                            <p class="fs-5 mb-4">2-Ortanca : Veriyi sıraladığımızda ortada kalan değere denir.</p>
+                            <p class="fs-5 mb-4">3-Mod : En çok tekrar eden değer veya değerlerdir.</p>
+                            <p class="fs-5 mb-4">Verinin Dağılımı</p>
+                            <p class="fs-5 mb-4">Aralık : Minimum ve maksimum değerler arasındaki farktır.</p>
+                            <p class="fs-5 mb-4">Varyans : Değerlerin ortalamadan farkının karesinin ortalamasıdır.</p>
+                            <p class="fs-5 mb-4">Standart Sapma : Varyansın kareköküdür.</p>    
+                            <p class="fs-5 mb-4">Kartil Aralığı(IQR) : 25 ve 75 kartiller arasındaki aralıktır.</p>
+                            <p class="fs-5 mb-4">Verinin Boyutu ve Şekli:</p>
+                            <p class="fs-5 mb-4">Çarpıklık(Skewness) : Normal dağılımda simetri vardır, ortalama, medyan ve mod aynı noktadır. Medyan ortalamadan büyükse veri sola çarpık; tersinde ise sağa çarpıktır.</p>
+                            <figure class="mb-4"><img class="img-fluid rounded" src="images/4.png" alt="aritmetik ortalama = medyan = mod"/></figure>
+                            <figure class="mb-4"><img class="img-fluid rounded" src="images/5.png" alt="Sağa çarpıklık"/></figure>
+                            <figure class="mb-4"><img class="img-fluid rounded" src="images/6.png" alt="sola çarpıklık"/></figure>
+                            <p class="fs-5 mb-4">Kalınlık(Kurtosis) : Dağılımın kuyruklu olma durumu; yani dağılım fazlaca çok büyük veya çok küçük aykırı değerlere sahiptir.</p>
+                            <p class="fs-5 mb-4">Yüzdelikler : Yüzdeliğe düşen değerlerdir. 25., 50, ve 75. yüzdelik dilimlere kartil denmektedir.</p>
+                            <p class="fs-5 mb-4">Ames verisetindeki SalePrice özelliğine odaklanıp, istatistiki değerlerine bakalım.Verisetini kaggle dan indirebilirsiniz.</p>
+                            <div class="container"><pre class="highlight"><code>
+import pandas as pd
+Ames = pd.read_csv('..\Ames.csv')
+ 
+# Descriptive Statistics of Sales Price
+sales_price_description = Ames['SalePrice'].describe()
+print(sales_price_description)</code></pre>
+<figure class="mb-4"><img class="img-fluid rounded" src="images/7.png" alt="..."/></figure>
+                            </div>  
+                            <div class="container"><pre class="highlight"><code>
+median_saleprice = Ames['SalePrice'].median()
+print("Median Sale Price:", median_saleprice)
+ 
+mode_saleprice = Ames['SalePrice'].mode().values[0]
+print("Mode Sale Price:", mode_saleprice)</code></pre>
+<samp>Median Sale Price: 159900.0</samp>
+<p><samp>Mode Sale Price: 135000</samp></p></div>
+                            <p class="fs-5 mb-4">Medyan değerini 159900 olarak, mod değerini 13500 olarak aldık. Bu değerleri nasıl yorumlarız? Medyan, ev fiyatlarını sıraladığımızda ortada kalan değerdir. Evlerin yarısını medyan değerin altında satılmıştır. 13500 fiyatıyla satılan ev sayısı diğer ev fiyatlarına göre daha fazla. Öyleyse ortalamayı 178.053 yüksek fyatlı evlerin etkilediğini söyleyebiliriz.</p>
+                            <div class="container"><pre class="highlight"><code>
+range_saleprice = Ames['SalePrice'].max() - Ames['SalePrice'].min()
+print("Range of Sale Price:", range_saleprice)
+ 
+variance_saleprice = Ames['SalePrice'].var()
+print("Variance of Sale Price:", variance_saleprice)
+ 
+std_dev_saleprice = Ames['SalePrice'].std()
+print("Standard Deviation of Sale Price:", std_dev_saleprice)
+ 
+iqr_saleprice = Ames['SalePrice'].quantile(0.75) - Ames['SalePrice'].quantile(0.25)
+print("IQR of Sale Price:", iqr_saleprice)  </code></pre>                              
+<p><samp>Range of Sale Price: 742211</samp></p>
+<p><samp>Variance of Sale Price: 5631749504.563301</samp></p>
+<p><samp>Standard Deviation of Sale Price: 75044.9832071625</samp></p>
+<p><samp>IQR of Sale Price: 79800.0</samp></p></div>
+                            <p class="fs-5 mb-4">Ev fiyatları 12789 ile 755000 arasında  değişkenlik göstermektedir. En düşük ve en yüksek değer arasındaki fark yani aralık     742211 dir. Evlerin fiyatlarının geniş bir aralıkta değişkenlik gösterdiği söylenebilir. Evlerin %50 si 79800 civarında fiyatla satılmıştır.</p>
+                            <div class="container"><pre class="highlight"><code>
+skewness_saleprice = Ames['SalePrice'].skew()
+print("Skewness of Sale Price:", skewness_saleprice)
+                                 
+kurtosis_saleprice = Ames['SalePrice'].kurt()
+print("Kurtosis of Sale Price:", kurtosis_saleprice)
+                                 
+tenth_percentile = Ames['SalePrice'].quantile(0.10)
+ninetieth_percentile = Ames['SalePrice'].quantile(0.90)
+print("10th Percentile:", tenth_percentile)
+print("90th Percentile:", ninetieth_percentile)
+                                 
+q1_saleprice = Ames['SalePrice'].quantile(0.25)
+q2_saleprice = Ames['SalePrice'].quantile(0.50)
+q3_saleprice = Ames['SalePrice'].quantile(0.75)
+print("Q1 (25th Percentile):", q1_saleprice)
+print("Q2 (Median/50th Percentile):", q2_saleprice)
+print("Q3 (75th Percentile):", q3_saleprice)                                
+                                </code></pre> 
+
+<p><samp>Skewness of Sale Price: 1.7607507033716905</samp></p>
+<p><samp>Kurtosis of Sale Price: 5.430410648673599</samp></p>
+<p><samp>10th Percentile: 107500.0</samp></p>
+<p><samp>90th Percentile: 272100.0000000001</samp></p>
+<p><samp>Q1 (25th Percentile): 129950.0</samp></p>
+<p><samp>Q2 (Median/50th Percentile): 159900.0</samp></p>
+<p><samp>Q3 (75th Percentile): 209750.0</samp></p></div>                               
+                            
+                            <p class="fs-5 mb-4">1.76 pozitif çarpıklık değeri, sağa doğru bir çarpıklık olduğunu ve yüksek değerli aykırı değerler bulunduğunu gösterir. 
+İlk %10 luk dilimde satışların 12789 ile 107500 aralığında değişkenliği olduğunu görüyoruz, burada aykırı değer olduğunu çıkarabiliriz.
+Son %10 luk dilim 272100 ve 755500 arasında dğişiyor, buradaki değişkenlik daha fazla.
+Satışların %50 si 129950 ile  209750 değerleri arasında ve 159900 civarındadır.</p>
+                            <p class="fs-5 mb-4">Kaynak :
+                                <a href="https://machinelearningmastery.com/decoding-data-descriptive-statistics/?fbclid=IwAR1TzVw7oIajw8fy9fIy8B2dwOW_mYRJU_qVvYru1AtyXdthlAw1THD4AOI">
+                                https://machinelearningmastery.com/decoding-data-descriptive-statistics/?fbclid=IwAR1TzVw7oIajw8fy9fIy8B2dwOW_mYRJU_qVvYru1AtyXdthlAw1THD4AOI</a></p>
+                                <p class="fs-5 mb-4"><a href="https://burakdogrul.medium.com/i%CC%87statistik-bilmeyenler-i%CC%87%C3%A7in-temel-i%CC%87statistik-terimleri-1-5271fa06446a">
+                                https://burakdogrul.medium.com/i%CC%87statistik-bilmeyenler-i%CC%87%C3%A7in-temel-i%CC%87statistik-terimleri-1-5271fa06446a
+                                </a></p>
+                            
+                        </section>
+                    </article>
+                    <!-- Comments section-->
+
+                </div>
+                <!-- Side widgets-->
+                <div class="col-lg-4">
+                    <!-- Search widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Search</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Categories widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Categories</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!">Web Design</a></li>
+                                        <li><a href="#!">HTML</a></li>
+                                        <li><a href="#!">Freebies</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!">JavaScript</a></li>
+                                        <li><a href="#!">CSS</a></li>
+                                        <li><a href="#!">Tutorials</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Side widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Side Widget</div>
+                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
